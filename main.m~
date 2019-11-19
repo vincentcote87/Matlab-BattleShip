@@ -8,20 +8,22 @@ genGrid();
 
 % colorSquare(3,5,[0 1 0]);
 
-ships = genShips();
-drawShips(ships);
+
+[x,y, z, w] = genShipPosition(2);
+% rectangle('position', genShip(5), 'FaceColor', [0.2 0.2 0.2]);
+rectangle('position', [x y z w], 'FaceColor', [0.2 0.2 0.2]);
 
 
 
 
 function genGrid()
 plot(0,0);
-axis([0 10 0 10]); % Grid size
-xticks(0.5:1:9.5); % move ticks to center text
+axis([0 10 0 10]);
+xticks(0.5:1:9.5);
 xticklabels({'1','2','3','4','5','6','7','8','9','10'});
 yticks(0.5:1:9.5);
 yticklabels({'A','B','C','D','E','F','G','H','I','J'});
-for i = 0:10 % Generate lines for grid
+for i = 0:10
     line([0 10], [i i], "color", "black");
     line([i i], [0 10], "color", "black");
 end
@@ -38,8 +40,7 @@ function ships = genShips()
         'position', {[],[],[],[],[]});
     for i = 1:5
         [x, y, z, w] = genShipPosition(ships(i).size);
-        ships(i).position = [x y z w];
-    end
+        ships(
     
 end
 
@@ -55,11 +56,5 @@ function [x_start, y_start, x_end, y_end] = genShipPosition(size)
         y_start = randi([0 (9 - size)]);
         x_end = 1;
         y_end = size;
-    end
-end
-
-function drawShips(ships)
-    for i = 1:length(ships)
-        rectangle('position', ships(i).position, 'FaceColor', [0.2 0.2 0.2]);
     end
 end
