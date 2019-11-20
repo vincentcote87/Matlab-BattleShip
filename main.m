@@ -1,12 +1,24 @@
 clear;
 clc;
 
+
+
+ships = struct(...
+        'name', {'Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer'},...
+        'size', {5, 4, 3, 3, 2},...
+        'position', {[],[],[],[],[]});
+
+ships(1).position = ([2:3] [3:3] [4:3]);
+disp(ships(1).position);
+
+
+return
 figure;
 hold on;
 
 y_coord = containers.Map([0,1,2,3,4,5,6,7,8,9], {'A','B','C','D','E','F','G','H','I','J'});
-x_coord = containers.Map([0,1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9,10]);
-
+x_coord = containers.Map([0,1,2,3,4,5,6,7,8,9], {'1','2','3','4','5','6','7','8','9','10'});
+genMoveList();
 genGrid();
 
 rectangle('position', [2 5 3 1], 'FaceColor', [0.2 0.2 0.2]);
@@ -17,14 +29,14 @@ drawShips(ships);
 
 colorSquare(3,5,[0 1 0]);
 
-arr = [2 5 3 1];
-str = [];
-
-carrier = struct('name', 'Carrier', 'size', 5, 'coord', {[]});
-battleship = struct('name', 'Battleship', 'size', 4, 'coord', {[]});
-cruiser = struct('name', 'Cruiser', 'size', 3, 'coord', {[]});
-
-allShips = [carrier battleship  cruiser];
+% arr = [2 5 3 1];
+% str = [];
+% 
+% carrier = struct('name', 'Carrier', 'size', 5, 'coord', {[]});
+% battleship = struct('name', 'Battleship', 'size', 4, 'coord', {[]});
+% cruiser = struct('name', 'Cruiser', 'size', 3, 'coord', {[]});
+% 
+% allShips = [carrier battleship  cruiser];
 
 disp(allShips(1).name);
 
@@ -77,4 +89,12 @@ function drawShips(ships)
     for i = 1:length(ships)
         rectangle('position', ships(i).position, 'FaceColor', [0.2 0.2 0.2]);
     end
+end
+
+function genMoveList()
+    for i = 1:10
+        for j = 1:10
+            disp([y_coord(i) x_coord(j)]);
+        end
+    end  
 end
