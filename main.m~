@@ -100,12 +100,12 @@ end
 
 function ships = genShips()
     shipSize = [5 4 3 3 2];
-    color = [0.1 0.1 0.1];
+    color = [0.2 0.2 0.2]
     ships = genShipPosition(shipSize(1), color);
     for i = 2:5
-        tmp = genShipPosition(shipSize(i), [i*.1 i*.1 i*.1]);
+        tmp = genShipPosition(shipSize(i), color +);
         while ~isValid(ships, tmp)
-            tmp = genShipPosition(shipSize(i), [i*.1 i*.1 i*.1]);
+            tmp = genShipPosition(shipSize(i));
         end
         ships = [ships tmp];
     end
@@ -133,9 +133,9 @@ function coords = genShipPosition(size, color)
     end
 end
 
-function drawShips(ships)
+function drawShips(ships, color)
     for i = 1:length(ships)
-        rectangle('position', [ships(i).x ships(i).y 1 1], 'FaceColor', ships(i).color);
+        rectangle('position', [ships(i).x ships(i).y 1 1], 'FaceColor', color);
     end
 end
 
